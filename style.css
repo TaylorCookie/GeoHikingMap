@@ -1,0 +1,282 @@
+:root {
+  --color-green--1: #2d4123;
+  --color-green--2: #5e7856;
+  --color-green--3: #8fa38c;
+  --color-light--1: #aaa;
+  --color-light--2: #ececec;
+  --color-light--3: rgb(214, 222, 224);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font-family: 'Manrope', sans-serif;
+}
+
+html {
+  font-size: 60%;
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--color-light--2);
+  font-weight: 400;
+  line-height: 1.6;
+  height: 100vh;
+  overscroll-behavior-y: none;
+  border-radius: 5px;
+
+  background-color: #fff;
+  padding: 2.5rem;
+
+  display: flex;
+}
+
+button {
+  background-color: var(--color-green--3);
+  border-radius: 5px;
+  padding: 3px;
+}
+
+select {
+  padding: 3px;
+}
+
+/* SIDEBAR */
+.sidebar {
+  flex-basis: 40rem;
+  background-color: var(--color-green--1);
+  padding: 3rem 5rem 4rem 5rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+.sidebar__title {
+  color: white;
+  margin: auto;
+  margin-bottom: 2rem;
+}
+
+.entries {
+  list-style: none;
+  height: 77vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-radius: 5px;
+}
+
+.entry {
+  background-color: var(--color-green--2);
+  border-radius: 5px;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.entry__row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.entry__details-container {
+  display: flex;
+  justify-content: space-around;
+  border-radius: 5px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-top: 1rem;
+}
+
+.entry__title {
+  font-size: 1.7rem;
+  font-weight: 600;
+  grid-column: 1 / -1;
+}
+
+.entry__details {
+  display: flex;
+  align-items: baseline;
+}
+
+.entry__icon {
+  font-size: 1.8rem;
+  margin-right: 0.2rem;
+  height: 0.28rem;
+}
+
+.entry__value {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.entry__unit {
+  font-size: 1.1rem;
+  color: var(--color-light--1);
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.form {
+  background-color: var(--color-green--2);
+  border-radius: 5px;
+  padding: 1.5rem 2.75rem;
+  margin-bottom: 1.75rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem 2.5rem;
+
+  transition: all 0.5s, transform 1ms;
+}
+
+.form.hidden {
+  transform: translateY(-30rem);
+  height: 0;
+  padding: 0 2.25rem;
+  margin-bottom: 0;
+  opacity: 0;
+}
+
+.form__row {
+  display: flex;
+  align-items: center;
+}
+
+.form__label {
+  font-size: 1.5rem;
+  font-weight: 600;
+  flex-basis: 20rem;
+}
+
+.form__input {
+  width: 100%;
+  padding: 0.3rem 1.1rem;
+  font-family: inherit;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--color-light--3);
+  transition: all 0.2s;
+}
+
+.form__input:focus {
+  outline: none;
+  background-color: #fff;
+}
+
+.form__btn {
+  margin-top: 1rem;
+  padding: 3px;
+}
+
+/* MAP */
+#map {
+  flex: 1;
+  height: 100%;
+  background-color: var(--color-light--1);
+}
+
+/* Popup width is defined in JS using options */
+.leaflet-popup .leaflet-popup-content-wrapper {
+  background-color: var(--color-green--1);
+  color: white;
+  border-radius: 5px;
+  padding-right: 0.6rem;
+}
+
+.leaflet-popup .leaflet-popup-content {
+  font-size: 1.5rem;
+}
+
+.leaflet-popup .leaflet-popup-tip {
+  background-color: var(--color-green--1);
+}
+
+.leaflet-container.crosshair-cursor-enabled {
+  cursor: crosshair;
+}
+
+.btn__settings {
+  margin-top: 1rem;
+}
+
+.delete__entry {
+  border: none;
+  background: none;
+}
+
+/* Modal */
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+
+  background-color: var(--color-green--2);
+  padding: 6rem;
+  border-radius: 5px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 2000; /*leaflet z-index is crazy high*/
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 1999;
+}
+
+.show-modal {
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 1.75rem 3.5rem;
+  margin: 5rem 2rem;
+  border: none;
+  background-color: #fff;
+  color: #444;
+  border-radius: 10rem;
+  cursor: pointer;
+}
+
+.close-modal {
+  position: absolute;
+  top: 1.2rem;
+  right: 2rem;
+  font-size: 5rem;
+  color: #333;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.sort__row {
+  margin-top: 5px;
+}
+
+.settings__box {
+  margin-top: 5rem;
+}
+
+.settings__buttons {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sort__submit {
+  margin-left: 5px;
+}
+
+.hidden {
+  display: none;
+}
